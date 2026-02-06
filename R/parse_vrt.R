@@ -6,7 +6,7 @@
 #'
 #' @param dsn Character string. Path or URL to a VRT file. Supports
 #'   `/vsicurl/` prefixed URLs — the VRT XML will be read via
-#'   [gdalraster::vsi_read_file()] for virtual filesystem paths,
+#'   [gdalraster::VSIFile] for virtual filesystem paths,
 #'   or [xml2::read_xml()] for plain paths/URLs.
 #'
 #' @return A list with components:
@@ -86,9 +86,12 @@ parse_vrt <- function(dsn) {
     url <- sub("^/vsicurl/", "", dsn)
     xml2::read_xml(url)
   } else if (grepl("^/vsi", dsn)) {
+    ## this branch is untested, as is the next one 2026-02-06
     # Other /vsi paths (e.g. /vsigzip/, /vsimem/) — read via gdalraster
-    raw_bytes <- gdalraster::vsi_read_file(dsn)
-    xml2::read_xml(raw_bytes)
+    v <- new(VSIFile, dsn)
+    bytes <- v$ingest(-1)
+    v$close()
+    xml2::read_xml(bytes)
   } else {
     # Local file or plain URL
     xml2::read_xml(dsn)

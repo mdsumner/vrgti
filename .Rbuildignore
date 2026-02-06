@@ -3,4 +3,4 @@
 ^README\.Rmd$
 ^LICENSE\.md$
 ^\.github$
-^vrgti\.Rproj$
+^.*\\.gpkg$

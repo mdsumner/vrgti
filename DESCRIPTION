@@ -13,7 +13,7 @@ Description: Convert GDAL Virtual Raster (VRT) mosaic files to the GDAL Tile
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.2
+RoxygenNote: 7.3.3
 Imports: 
     xml2,
     gdalraster (>= 2.0.0)

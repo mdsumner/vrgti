@@ -110,7 +110,7 @@ vrt_to_gti <- function(dsn,
     nodata = vrt_info$nodata
   )
 
-  message("Done. Open with: GTI:", output)
+  message("Done. Open raster index with: GTI:", output)
   invisible(output)
 }
 
@@ -197,7 +197,7 @@ vrt_to_gti <- function(dsn,
   if (!nzchar(geom_col)) geom_col <- "geom"
 
   # Write features
-  lyr$startTransaction(FALSE)
+  lyr$startTransaction()
   for (i in seq_len(n)) {
     wkt <- .bbox_to_wkt(tile_data$xmin[i], tile_data$ymin[i],
                          tile_data$xmax[i], tile_data$ymax[i])
@@ -211,21 +211,21 @@ vrt_to_gti <- function(dsn,
   lyr$commitTransaction()
 
   # Set layer metadata for GTI
-  lyr$setMetadataItem("RESX", as.character(res_x), "")
-  lyr$setMetadataItem("RESY", as.character(res_y), "")
-  lyr$setMetadataItem("MINX", as.character(mosaic_extent[1]), "")
-  lyr$setMetadataItem("MINY", as.character(mosaic_extent[2]), "")
-  lyr$setMetadataItem("MAXX", as.character(mosaic_extent[3]), "")
-  lyr$setMetadataItem("MAXY", as.character(mosaic_extent[4]), "")
-  lyr$setMetadataItem("BAND_COUNT", as.character(band_count), "")
-  lyr$setMetadataItem("DATA_TYPE", data_type, "")
-  lyr$setMetadataItem("LOCATION_FIELD", location_field, "")
+  lyr$setMetadata(sprintf("RESX%s", as.character(res_x)))
+  lyr$setMetadata(sprintf("RESY%s", as.character(res_y)))
+  lyr$setMetadata(sprintf("MINX%s", as.character(mosaic_extent[1])))
+  lyr$setMetadata(sprintf("MINY%s", as.character(mosaic_extent[2])))
+  lyr$setMetadata(sprintf("MAXX%s", as.character(mosaic_extent[3])))
+  lyr$setMetadata(sprintf("MAXY%s", as.character(mosaic_extent[4])))
+  lyr$setMetadata(sprintf("BAND_COUNT%s", as.character(band_count)))
+  lyr$setMetadata(sprintf("DATA_TYPE%s", data_type))
+  lyr$setMetadata(sprintf("LOCATION_FIELD%s", location_field))
   if (!is.null(nodata)) {
-    lyr$setMetadataItem("NODATA", nodata, "")
+    lyr$setMetadata(sprintf("NODATA%s", nodata))
   }
 
   # Also set the SRS metadata explicitly
-  lyr$setMetadataItem("SRS", srs_wkt, "")
+  lyr$setMetadata(sprintf("SRS%s", srs_wkt))
 
   lyr$close()
   invisible(output)

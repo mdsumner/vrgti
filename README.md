@@ -50,7 +50,7 @@ GTI is an improved mosaic format over VRT for large tile collections:
 
 The function will stop with a diagnostic message if the VRT contains:
 
-- `ComplexSource`, `AveragedSource`, `KernelFilteredSource`, or other non-simple source types
+- `AveragedSource`, `KernelFilteredSource`, or other non-simple source types (note: `ComplexSource` is allowed — it's the standard nodata-aware mosaic source)
 - `VRTWarpedDataset` or `VRTDerivedRasterBand` subclasses
 - Sources where SrcRect and DstRect dimensions differ (within-VRT resampling)
 - Bands with inconsistent source file/layout across bands

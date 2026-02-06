@@ -3,8 +3,8 @@
 #' Checks whether a VRT file is suitable for conversion to a GTI tile index.
 #' A "simple" VRT mosaic must satisfy:
 #'
-#' - All sources are `SimpleSource` (strict mode: no `ComplexSource`,
-#'   `AveragedSource`, `KernelFilteredSource`, etc.)
+#' - All sources are `SimpleSource` or `ComplexSource` (no `AveragedSource`,
+#'   `KernelFilteredSource`, etc.)
 #' - No `subClass` on bands (no `VRTWarpedDataset`, `VRTDerivedRasterBand`)
 #' - All bands reference the same set of source files with the same DstRect
 #'   layout (standard multi-band mosaic)
@@ -33,15 +33,19 @@ validate_vrt <- function(vrt_info) {
     }
   }
 
-  # Check 2: All sources must be SimpleSource (strict)
+  # Check 2: All sources must be SimpleSource or ComplexSource
+  # ComplexSource is used by gdalbuildvrt whenever nodata is present —
+
+  # structurally identical to SimpleSource for mosaic layout purposes.
+  allowed_types <- c("SimpleSource", "ComplexSource")
   for (bi in seq_along(vrt_info$bands)) {
     b <- vrt_info$bands[[bi]]
     for (si in seq_along(b$sources)) {
       s <- b$sources[[si]]
-      if (s$source_type != "SimpleSource") {
+      if (!s$source_type %in% allowed_types) {
         errors <- c(errors, sprintf(
-          "Band %d, source %d: type '%s' is not supported (only SimpleSource allowed)",
-          b$band, si, s$source_type))
+          "Band %d, source %d: type '%s' is not supported (allowed: %s)",
+          b$band, si, s$source_type, paste(allowed_types, collapse = ", ")))
       }
     }
   }
