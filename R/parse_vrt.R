@@ -80,6 +80,8 @@ parse_vrt <- function(dsn) {
 
 
 # Internal: read VRT XML, handling /vsi paths
+#' @importFrom methods new
+#' @noRd
 .read_vrt_xml <- function(dsn) {
   if (grepl("^/vsicurl/", dsn)) {
     # Extract the URL from /vsicurl/ prefix and let xml2 read it
@@ -88,7 +90,7 @@ parse_vrt <- function(dsn) {
   } else if (grepl("^/vsi", dsn)) {
     ## this branch is untested, as is the next one 2026-02-06
     # Other /vsi paths (e.g. /vsigzip/, /vsimem/) — read via gdalraster
-    v <- new(VSIFile, dsn)
+    v <- methods::new(gdalraster::VSIFile, dsn)
     bytes <- v$ingest(-1)
     v$close()
     xml2::read_xml(bytes)

@@ -3,4 +3,5 @@
 ^README\.Rmd$
 ^LICENSE\.md$
 ^\.github$
-^.*\\.gpkg$
+^.*\.gpkg$
+^CODE_OF_CONDUCT\.md$

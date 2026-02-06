@@ -8,6 +8,14 @@
 \description{
 Convert GDAL Virtual Raster (VRT) mosaic files to the GDAL Tile Index (GTI) format. Parses VRT XML to extract tile source locations and spatial footprints, validates that the VRT represents a simple mosaic (SimpleSource only), and writes a GTI-compatible GeoPackage with layer metadata. The resulting GTI datasource supports efficient spatial filtering and scales to very large tile collections.
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/mdsumner/vrgti}
+  \item Report bugs at \url{https://github.com/mdsumner/vrgti/issues}
+}
+
+}
 \author{
 \strong{Maintainer}: Michael Sumner \email{mdsumner@gmail.com} (\href{https://orcid.org/0000-0002-2471-7511}{ORCID})
 

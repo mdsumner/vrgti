@@ -3,3 +3,4 @@
 export(parse_vrt)
 export(validate_vrt)
 export(vrt_to_gti)
+importFrom(methods,new)
