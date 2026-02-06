@@ -1,0 +1,14 @@
+<VRTDataset rasterXSize="100" rasterYSize="100">
+  <SRS>EPSG:4326</SRS>
+  <GeoTransform> 0.0, 1.0, 0.0, 100.0, 0.0, -1.0</GeoTransform>
+  <VRTRasterBand dataType="Byte" band="1">
+    <ComplexSource>
+      <SourceFilename relativeToVRT="0">/data/tile.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SrcRect xOff="0" yOff="0" xSize="100" ySize="100"/>
+      <DstRect xOff="0" yOff="0" xSize="100" ySize="100"/>
+      <NODATA>0</NODATA>
+      <ScaleOffset>10</ScaleOffset>
+    </ComplexSource>
+  </VRTRasterBand>
+</VRTDataset>

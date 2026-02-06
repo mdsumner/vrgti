@@ -1,0 +1,22 @@
+Package: vrgti
+Title: Convert VRT Mosaics to GDAL Tile Index (GTI)
+Version: 0.1.0
+Authors@R: 
+    person("Michael", "Sumner", , "mdsumner@gmail.com", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0002-2471-7511"))
+Description: Convert GDAL Virtual Raster (VRT) mosaic files to the GDAL Tile 
+    Index (GTI) format. Parses VRT XML to extract tile source locations and 
+    spatial footprints, validates that the VRT represents a simple mosaic 
+    (SimpleSource only), and writes a GTI-compatible GeoPackage with layer 
+    metadata. The resulting GTI datasource supports efficient spatial filtering 
+    and scales to very large tile collections.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2
+Imports: 
+    xml2,
+    gdalraster (>= 2.0.0)
+Suggests:
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3

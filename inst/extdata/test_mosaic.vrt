@@ -1,0 +1,35 @@
+<VRTDataset rasterXSize="200" rasterYSize="200">
+  <SRS>EPSG:3031</SRS>
+  <GeoTransform> -100000.0, 100.0, 0.0, 100000.0, 0.0, -100.0</GeoTransform>
+  <VRTRasterBand dataType="Float32" band="1">
+    <NoDataValue>-9999</NoDataValue>
+    <SimpleSource>
+      <SourceFilename relativeToVRT="0">/data/tile_a.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="100" RasterYSize="100" DataType="Float32"/>
+      <SrcRect xOff="0" yOff="0" xSize="100" ySize="100"/>
+      <DstRect xOff="0" yOff="0" xSize="100" ySize="100"/>
+    </SimpleSource>
+    <SimpleSource>
+      <SourceFilename relativeToVRT="0">/data/tile_b.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="100" RasterYSize="100" DataType="Float32"/>
+      <SrcRect xOff="0" yOff="0" xSize="100" ySize="100"/>
+      <DstRect xOff="100" yOff="0" xSize="100" ySize="100"/>
+    </SimpleSource>
+    <SimpleSource>
+      <SourceFilename relativeToVRT="0">/data/tile_c.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="100" RasterYSize="100" DataType="Float32"/>
+      <SrcRect xOff="0" yOff="0" xSize="100" ySize="100"/>
+      <DstRect xOff="0" yOff="100" xSize="100" ySize="100"/>
+    </SimpleSource>
+    <SimpleSource>
+      <SourceFilename relativeToVRT="0">/data/tile_d.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="100" RasterYSize="100" DataType="Float32"/>
+      <SrcRect xOff="0" yOff="0" xSize="100" ySize="100"/>
+      <DstRect xOff="100" yOff="100" xSize="100" ySize="100"/>
+    </SimpleSource>
+  </VRTRasterBand>
+</VRTDataset>
